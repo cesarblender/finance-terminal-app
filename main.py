@@ -53,7 +53,12 @@ def display_diff():
         print("Your balance is neutral.")
 
 def show_logs():
-    pass
+    cursor.execute("SELECT * FROM transactions")
+    transactions = cursor.fetchall()
+    
+    print("Transaction Logs:")
+    for transaction in transactions:
+        print(f"ID: {transaction[0]}, Type: {transaction[1]}, Amount: {transaction[2]}")
 
 def main():
     while True:
