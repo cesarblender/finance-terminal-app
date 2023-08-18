@@ -33,7 +33,24 @@ def display_total_balance():
     print(f"Total balance: {total_balance:.2f}")
 
 def display_diff():
-    pass
+    cursor.execute("SELECT SUM(CASE WHEN type = 'income' THEN amount ELSE -amount END) FROM transactions")
+    total_balance = cursor.fetchone()[0]
+
+    print("Transaction Details:")
+    cursor.execute("SELECT type, amount FROM transactions")
+    transactions = cursor.fetchall()
+
+    for transaction in transactions:
+        sign = "+" if transaction[0] == "income" else "-"
+        print(f"{sign} {transaction[1]:.2f} {transaction[0]}")
+
+    print(f"\nTotal balance: {total_balance:.2f}")
+    if total_balance < 0:
+        print("Your balance is in deficit.")
+    elif total_balance > 0:
+        print("Your balance is positive.")
+    else:
+        print("Your balance is neutral.")
 
 def show_logs():
     pass
