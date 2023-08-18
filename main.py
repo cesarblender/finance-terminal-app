@@ -1,3 +1,20 @@
+import sqlite3
+
+conn = sqlite3.connect("./database.db")
+cursor = conn.cursor()
+
+def create_tables():
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS transactions (
+        id INTEGER PRIMARY KEY,
+        type TEXT,
+        amount REAL
+    )
+    """)
+    conn.commit()
+
+create_tables()
+
 def register_income():
     pass
 
