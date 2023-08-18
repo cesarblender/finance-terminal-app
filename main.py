@@ -28,7 +28,9 @@ def register_expense():
     print("Expense registered successfully!")
 
 def display_total_balance():
-    pass
+    cursor.execute("SELECT SUM(CASE WHEN type = 'income' THEN amount ELSE -amount END) FROM transactions")
+    total_balance = cursor.fetchone()[0]
+    print(f"Total balance: {total_balance:.2f}")
 
 def display_diff():
     pass
