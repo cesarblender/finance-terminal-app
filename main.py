@@ -16,7 +16,10 @@ def create_tables():
 create_tables()
 
 def register_income():
-    pass
+    amount = float(input("Enter the income amount: "))
+    cursor.execute("INSERT INTO transactions (type, amount) VALUES (?, ?)", ("income", amount))
+    conn.commit()
+    print("Income registered successfully!")
 
 def register_expense():
     pass
