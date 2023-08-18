@@ -22,7 +22,10 @@ def register_income():
     print("Income registered successfully!")
 
 def register_expense():
-    pass
+    amount = float(input("Enter the expense amount: "))
+    cursor.execute("INSERT INTO transactions (type, amount) VALUES (?, ?)", ("expense", amount))
+    conn.commit()
+    print("Expense registered successfully!")
 
 def display_total_balance():
     pass
